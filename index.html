@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Compass Cambro Washing</title>
+<style>
+:root{
+  --bg:#f6f5f1;--card:#ffffff;--ink:#1d1d1b;--muted:#6b6a64;--line:#e4e2db;
+  --accent:#1f6f5c;--accent-soft:#dcefe8;--warn:#a15c07;--warn-soft:#fbeedb;--bar:#2f8f76;
+}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#141413;--card:#1e1e1c;--ink:#ecebe6;--muted:#a3a29b;--line:#33332f;
+    --accent:#5cc3a6;--accent-soft:#1d3a32;--warn:#e7a14a;--warn-soft:#3a2c17;--bar:#4fb196;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding:24px 16px 64px}
+header h1{font-size:24px;margin:0 0 4px;letter-spacing:-.01em}
+header p{margin:0;color:var(--muted)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:20px 0}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.kpi .v{font-size:26px;font-weight:650;font-variant-numeric:tabular-nums}
+.kpi .l{color:var(--muted);font-size:13px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.card h2{font-size:16px;margin:0 0 12px}
+#chart{width:100%;height:220px;display:block}
+#chart .lbl{fill:var(--muted);font-size:10px}
+.legend{display:flex;gap:16px;color:var(--muted);font-size:12px;margin-top:6px;flex-wrap:wrap}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);padding:6px 9px;border-radius:6px;font-size:12px;display:none;z-index:5}
+.days{display:flex;flex-direction:column;gap:8px}
+details.day{border:1px solid var(--line);border-radius:10px;background:var(--card)}
+details.day summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:minmax(92px,1.2fr) 1fr auto;gap:10px;align-items:center;padding:12px 14px}
+details.day summary::-webkit-details-marker{display:none}
+.d-date{font-weight:600}
+.d-count{font-variant-numeric:tabular-nums}
+.d-count small{color:var(--muted);font-weight:400}
+.chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.chip{font-size:12px;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.chip.warn{background:var(--warn-soft);color:var(--warn)}
+.body{padding:0 14px 14px}
+.grp h3{font-size:13px;color:var(--muted);margin:10px 0 8px;font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
+.ph{margin:0;cursor:zoom-in}
+.ph img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:8px;border:1px solid var(--line);display:block;background:var(--line)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.3}
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:9;flex-direction:column;padding:16px}
+.lb.on{display:flex}
+.lb img{max-width:100%;max-height:82vh;border-radius:6px}
+.lb .cap{color:#eee;margin-top:10px;font-size:14px;text-align:center}
+.lb button{position:absolute;background:rgba(255,255,255,.12);color:#fff;border:0;border-radius:8px;font-size:22px;width:44px;height:44px;cursor:pointer}
+.lb .x{top:14px;right:14px}.lb .p{left:10px;top:50%}.lb .n{right:10px;top:50%}
+footer{color:var(--muted);font-size:12px;margin-top:24px}
+@media (max-width:560px){details.day summary{grid-template-columns:1fr auto}.chips{grid-column:1/-1;justify-content:flex-start}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Compass · Cambro washing, Mahadevapura</h1>
+    <p id="sub">InfinityBox daily service record</p>
+  </header>
+  <section class="kpis" id="kpis"></section>
+  <section class="card">
+    <h2>Cambros washed per day</h2>
+    <svg id="chart" role="img" aria-label="Cambros washed per day"></svg>
+    <div class="legend"><span><i class="sw" style="background:var(--bar)"></i>Daily facility report</span><span><i class="sw" style="background:var(--warn)"></i>Site WhatsApp count (provisional)</span></div>
+  </section>
+  <section>
+    <h2 style="font-size:16px;margin:8px 0 10px">Day by day: delivery challans and check-in photos</h2>
+    <div class="days" id="days"></div>
+  </section>
+  <footer id="foot"></footer>
+</div>
+<div class="tip" id="tip"></div>
+<div class="lb" id="lb"><button class="x" aria-label="Close">×</button><button class="p" aria-label="Previous">‹</button><img alt=""><div class="cap"></div><button class="n" aria-label="Next">›</button></div>
+<script>
+(async function(){
+  const [daily, photos, meta] = await Promise.all(['data/daily.json','data/photos.json','data/meta.json'].map(u=>fetch(u,{cache:'no-store'}).then(r=>r.json())));
+  const fmtN = n => n==null ? '—' : n.toLocaleString('en-IN');
+  const dLabel = s => { const d=new Date(s+'T00:00:00'); return d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'}); };
+  const el = (t,c,txt)=>{const e=document.createElement(t); if(c) e.className=c; if(txt!=null) e.textContent=txt; return e;};
+
+  const counted = daily.filter(r=>r.cambros_washed!=null);
+  const total = counted.reduce((a,r)=>a+r.cambros_washed,0);
+  const prov = daily.filter(r=>r.provisional && r.cambros_washed!=null).length;
+  const month = new Date(daily[0].date+'T00:00:00').toLocaleDateString('en-GB',{month:'long',year:'numeric'});
+  document.getElementById('sub').textContent = `${month} · ${daily[0].date.slice(8)*1}–${daily[daily.length-1].date.slice(8)*1} ${month.split(' ')[0]}`;
+  const k = [
+    [fmtN(total),'Cambros washed this month'+(prov?` (incl. ${prov} provisional day${prov>1?'s':''})`:'')],
+    [fmtN(Math.round(total/Math.max(counted.length,1))),'Average per day'],
+    [fmtN(photos.filter(p=>p.kind==='dc').length),'Delivery challan copies'],
+    [fmtN(photos.filter(p=>p.kind==='checkin').length),'Check-in photos (team, geyser, PPM, dryer)'],
+  ];
+  const kp=document.getElementById('kpis');
+  k.forEach(([v,l])=>{const c=el('div','kpi'); c.append(el('div','v',v), el('div','l',l)); kp.append(c);});
+
+  const svg=document.getElementById('chart'), tip=document.getElementById('tip');
+  function draw(){
+    const W=svg.clientWidth, H=220, pad={l:36,r:6,t:10,b:22};
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`); svg.innerHTML='';
+    const max=Math.max(...counted.map(r=>r.cambros_washed),1); const step=[100,200,250,300,400,500,1000].find(x=>x*4>=max)||Math.ceil(max/4000)*1000; const nice=step*4;
+    const bw=(W-pad.l-pad.r)/daily.length, ih=H-pad.t-pad.b;
+    const ns='http://www.w3.org/2000/svg';
+    for(let g=0; g<=nice; g+=step){
+      const y=pad.t+ih-(g/nice)*ih;
+      const ln=document.createElementNS(ns,'line'); ln.setAttribute('x1',pad.l); ln.setAttribute('x2',W-pad.r); ln.setAttribute('y1',y); ln.setAttribute('y2',y); ln.setAttribute('stroke','var(--line)'); svg.append(ln);
+      const t=document.createElementNS(ns,'text'); t.setAttribute('x',pad.l-6); t.setAttribute('y',y+3); t.setAttribute('text-anchor','end'); t.setAttribute('class','lbl'); t.textContent=g.toLocaleString('en-IN'); svg.append(t);
+    }
+    daily.forEach((r,i)=>{
+      const x=pad.l+i*bw;
+      if(r.cambros_washed!=null){
+        const h=(r.cambros_washed/nice)*ih;
+        const b=document.createElementNS(ns,'rect'); b.setAttribute('x',x+bw*0.15); b.setAttribute('width',Math.max(bw*0.7,1)); b.setAttribute('y',pad.t+ih-h); b.setAttribute('height',h); b.setAttribute('rx',2);
+        b.setAttribute('fill', r.provisional?'var(--warn)':'var(--bar)');
+        b.addEventListener('mousemove',e=>{tip.style.display='block'; tip.style.left=Math.min(e.clientX+12,innerWidth-170)+'px'; tip.style.top=(e.clientY-36)+'px'; tip.textContent=`${dLabel(r.date)}: ${fmtN(r.cambros_washed)}${r.provisional?' (provisional)':''}`;});
+        b.addEventListener('mouseleave',()=>tip.style.display='none');
+        svg.append(b);
+      }
+      const every = bw<14 ? 5 : bw<22 ? 2 : 1;
+      if((i%every)===0){const t=document.createElementNS(ns,'text'); t.setAttribute('x',x+bw/2); t.setAttribute('y',H-6); t.setAttribute('text-anchor','middle'); t.setAttribute('class','lbl'); t.textContent=r.date.slice(8)*1; svg.append(t);}
+    });
+  }
+  draw(); new ResizeObserver(draw).observe(svg);
+
+  const byDay={}; photos.forEach(p=>(byDay[p.date]=byDay[p.date]||[]).push(p));
+  const list=document.getElementById('days'); let flat=[];
+  [...daily].reverse().forEach((r,idx)=>{
+    const ps=(byDay[r.date]||[]); const det=el('details','day'); if(idx===0) det.open=true;
+    const s=el('summary'); s.append(el('span','d-date',dLabel(r.date)));
+    const c=el('span','d-count'); c.textContent = r.cambros_washed==null ? (r.source==='Day in progress'?'Day in progress':'No count yet') : fmtN(r.cambros_washed)+' cambros';
+    if(r.provisional && r.cambros_washed!=null){c.append(' '); c.append(el('small',null,'(provisional)'));}
+    s.append(c);
+    const ch=el('span','chips');
+    ch.append(el('span','chip'+(r.dc_photos?'':' warn'),`${r.dc_photos||0} DC`));
+    ch.append(el('span','chip'+(r.checkin_photos?'':' warn'),r.checkin_photos?`${r.checkin_photos} check-in`:'no check-in'));
+    s.append(ch); det.append(s);
+    const body=el('div','body');
+    det.addEventListener('toggle',()=>{ if(!det.open||body.dataset.done) return; body.dataset.done=1;
+      [['checkin','Check-in photos'],['dc','Delivery challans'],['other','Other site photos']].forEach(([kind,label])=>{
+        const items=ps.filter(p=>p.kind===kind); if(!items.length) return;
+        const g=el('div','grp'); g.append(el('h3',null,`${label} (${items.length})`)); const grid=el('div','grid');
+        items.forEach(p=>{ const f=el('figure','ph'); const im=el('img'); im.loading='lazy'; im.src=p.src; im.alt=p.caption; f.append(im, el('figcaption',null,`${p.time} · ${p.caption}`)); f.addEventListener('click',()=>openLB(p)); grid.append(f); });
+        g.append(grid); body.append(g);
+      });
+      if(!ps.length) body.append(el('p',null,'No photos posted for this day.'));
+    });
+    det.append(body); list.append(det); if(idx===0) det.dispatchEvent(new Event('toggle'));
+  });
+  flat=photos;
+
+  const lb=document.getElementById('lb'), lbi=lb.querySelector('img'), lbc=lb.querySelector('.cap'); let cur=-1;
+  function show(i){ cur=(i+flat.length)%flat.length; const p=flat[cur]; lbi.src=p.src; lbc.textContent=`${dLabel(p.date)} · ${p.time} · ${p.caption}`; }
+  function openLB(p){ show(flat.indexOf(p)); lb.classList.add('on'); }
+  lb.querySelector('.x').onclick=()=>lb.classList.remove('on');
+  lb.querySelector('.p').onclick=e=>{e.stopPropagation(); show(cur-1);};
+  lb.querySelector('.n').onclick=e=>{e.stopPropagation(); show(cur+1);};
+  lb.addEventListener('click',e=>{ if(e.target===lb) lb.classList.remove('on'); });
+  addEventListener('keydown',e=>{ if(!lb.classList.contains('on')) return; if(e.key==='Escape') lb.classList.remove('on'); if(e.key==='ArrowLeft') show(cur-1); if(e.key==='ArrowRight') show(cur+1); });
+
+  document.getElementById('foot').textContent = `Counts: InfinityBox daily facility report; latest days are provisional from the site's end-of-day count until the report has them. Photos: posted by the InfinityBox site team. Last updated ${new Date(meta.updated).toLocaleString('en-IN',{dateStyle:'medium',timeStyle:'short',timeZone:'Asia/Kolkata'})} IST.`;
+})();
+</script>
+</body>
+</html>

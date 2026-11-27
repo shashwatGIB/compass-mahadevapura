@@ -1,0 +1,245 @@
+[
+ {
+  "date": "2026-11-01",
+  "cambros_washed": 451,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 10,
+  "checkin_photos": 0,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-02",
+  "cambros_washed": 1197,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 18,
+  "checkin_photos": 4,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-03",
+  "cambros_washed": 1107,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 26,
+  "checkin_photos": 0,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-04",
+  "cambros_washed": 1050,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 20,
+  "checkin_photos": 0,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-05",
+  "cambros_washed": 1119,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 23,
+  "checkin_photos": 0,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-06",
+  "cambros_washed": 1121,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 23,
+  "checkin_photos": 0,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-07",
+  "cambros_washed": 320,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 7,
+  "checkin_photos": 0,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-08",
+  "cambros_washed": 345,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 8,
+  "checkin_photos": 0,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-09",
+  "cambros_washed": 1166,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 13,
+  "checkin_photos": 0,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-10",
+  "cambros_washed": 695,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 23,
+  "checkin_photos": 5,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-11",
+  "cambros_washed": 1018,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 26,
+  "checkin_photos": 0,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-12",
+  "cambros_washed": 1152,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 24,
+  "checkin_photos": 0,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-13",
+  "cambros_washed": 1233,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 27,
+  "checkin_photos": 0,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-14",
+  "cambros_washed": 417,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 9,
+  "checkin_photos": 0,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-15",
+  "cambros_washed": 354,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 10,
+  "checkin_photos": 0,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-16",
+  "cambros_washed": 1100,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 10,
+  "checkin_photos": 0,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-17",
+  "cambros_washed": 1196,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 29,
+  "checkin_photos": 0,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-18",
+  "cambros_washed": 1042,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 24,
+  "checkin_photos": 6,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-19",
+  "cambros_washed": 1066,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 22,
+  "checkin_photos": 0,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-20",
+  "cambros_washed": 1231,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 21,
+  "checkin_photos": 1,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-21",
+  "cambros_washed": 422,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 16,
+  "checkin_photos": 0,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-22",
+  "cambros_washed": 469,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 10,
+  "checkin_photos": 0,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-23",
+  "cambros_washed": 1241,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 27,
+  "checkin_photos": 2,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-24",
+  "cambros_washed": 1070,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 23,
+  "checkin_photos": 1,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-25",
+  "cambros_washed": 1221,
+  "source": "Site WhatsApp count (provisional)",
+  "provisional": true,
+  "dc_photos": 23,
+  "checkin_photos": 1,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-26",
+  "cambros_washed": 1182,
+  "source": "Site WhatsApp count (provisional)",
+  "provisional": true,
+  "dc_photos": 27,
+  "checkin_photos": 1,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-27",
+  "cambros_washed": null,
+  "source": "Day in progress",
+  "provisional": true,
+  "dc_photos": 11,
+  "checkin_photos": 1,
+  "photos_loaded": true
+ }
+]
