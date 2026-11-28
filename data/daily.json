@@ -218,8 +218,8 @@
  {
   "date": "2026-11-25",
   "cambros_washed": 1221,
-  "source": "Site WhatsApp count (provisional)",
-  "provisional": true,
+  "source": "Daily facility report",
+  "provisional": false,
   "dc_photos": 23,
   "checkin_photos": 1,
   "photos_loaded": true
@@ -227,18 +227,27 @@
  {
   "date": "2026-11-26",
   "cambros_washed": 1182,
-  "source": "Site WhatsApp count (provisional)",
-  "provisional": true,
+  "source": "Daily facility report",
+  "provisional": false,
   "dc_photos": 27,
   "checkin_photos": 1,
   "photos_loaded": true
  },
  {
   "date": "2026-11-27",
+  "cambros_washed": 1187,
+  "source": "Daily facility report",
+  "provisional": false,
+  "dc_photos": 26,
+  "checkin_photos": 2,
+  "photos_loaded": true
+ },
+ {
+  "date": "2026-11-28",
   "cambros_washed": null,
   "source": "Day in progress",
   "provisional": true,
-  "dc_photos": 11,
+  "dc_photos": 12,
   "checkin_photos": 1,
   "photos_loaded": true
  }
